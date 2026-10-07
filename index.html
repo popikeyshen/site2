@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sensitive Tools — detect and locate devices around you." />
+  <title>Sensitive Tools</title>
+  <style>
+    :root {
+      --black: #0b0b0b;
+      --white: #ffffff;
+      --soft: #f5f5f5;
+      --muted: #666666;
+      --line: #dedede;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .header {
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 34px 20px 28px;
+    }
+
+    .brand-image {
+      display: block;
+      width: min(116px, 28vw);
+      height: auto;
+    }
+
+    .black-bar {
+      height: 2px;
+      background: var(--black);
+      width: 100%;
+    }
+
+    .hero {
+      min-height: 64vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 920px;
+      text-align: left;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 0 auto;
+      font-size: clamp(18px, 4vw, 48px);
+      white-space: nowrap;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .intro {
+      max-width: 820px;
+      margin: 28px auto 0;
+      font-size: clamp(17px, 2.2vw, 21px);
+      line-height: 1.65;
+      color: #414141;
+      text-align: center;
+    }
+
+    .comparison-list {
+      max-width: 820px;
+      margin: 26px auto 0;
+      padding: 0;
+      list-style: none;
+      font-size: clamp(15px, 1.8vw, 18px);
+      line-height: 1.65;
+      color: #5a5a5a;
+    }
+
+    .comparison-list li {
+      position: relative;
+      padding-left: 24px;
+      margin: 10px 0;
+    }
+
+    .comparison-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 700;
+      color: #111111;
+    }
+
+    .features {
+      background: var(--soft);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 68px 24px;
+    }
+
+    .features-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 30px;
+      min-height: 210px;
+    }
+
+    .feature-number {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #8a8a8a;
+      margin-bottom: 26px;
+    }
+
+    .feature h2 {
+      margin: 0 0 12px;
+      font-size: 23px;
+      letter-spacing: -0.02em;
+    }
+
+    .feature p {
+      margin: 0;
+      color: #555;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .statement {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 78px 24px;
+      text-align: left;
+    }
+
+    .statement h2 {
+      margin: 0 0 18px;
+      font-size: clamp(30px, 4vw, 46px);
+      letter-spacing: -0.035em;
+    }
+
+    .statement p {
+      margin: 0;
+      max-width: 820px;
+      color: #555;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 52px 24px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+    }
+
+    .footer-brand {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .footer-copy {
+      color: #a9a9a9;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .contact {
+      text-align: right;
+    }
+
+    .contact-label {
+      display: block;
+      color: #9b9b9b;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+
+    .contact a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 760px) {
+      .header {
+        padding: 24px 18px 20px;
+      }
+
+      .black-bar {
+        height: 2px;
+      }
+
+      .hero {
+        min-height: 58vh;
+        padding: 64px 20px;
+      }
+
+      .features-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .feature {
+        min-height: 0;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <img class="brand-image" src="sensitivetools_logo.png" alt="Sensitive Tools logo" />
+  </header>
+
+  <div class="black-bar"></div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Detect and locate any device around</h1>
+        <p class="intro">
+          Sensitive Tools develops compact signal-detection technology designed to help you
+          discover nearby wireless devices, understand where signals are coming from, and make
+          better decisions in environments where awareness matters.
+        </p>
+
+        <ul class="comparison-list">
+          <li>Professional RF equipment can be bulky, expensive and difficult to use.</li>
+          <li>Many compact detectors are limited to specific protocols, device types or known signals.</li>
+          <li>Sensitive Tools combines broad signal awareness, direction finding and true handheld portability in one practical device.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="features-inner">
+        <article class="feature">
+          <div class="feature-number">01</div>
+          <h2>Detect</h2>
+          <p>
+            Identify nearby wireless activity and quickly see when a device or signal appears
+            in your surroundings.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-number">02</div>
+          <h2>Locate</h2>
+          <p>
+            Use directional signal information to understand where a transmitter is located
+            instead of relying on signal presence alone.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-number">03</div>
+          <h2>Stay aware</h2>
+          <p>
+            A portable, purpose-built tool for situational awareness, troubleshooting,
+            diagnostics, field work and personal security.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="statement">
+      <h2>Simple tools. Clear signals.</h2>
+      <p>
+        We are building practical RF tools that turn complex radio-frequency information into
+        something easy to understand and use. The goal is simple: give people a fast and
+        intuitive way to detect, identify and locate wireless devices around them.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Sensitive Tools</div>
+        <div class="footer-copy">
+          Wireless signal detection and direction-finding technology.<br />
+          © 2026 Sensitive Tools. All rights reserved.
+        </div>
+      </div>
+
+      <div class="contact">
+        <span class="contact-label">Contact</span>
+        <a href="mailto:contact@sensitivetools.com">contact@sensitivetools.com</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
