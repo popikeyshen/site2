@@ -52,11 +52,10 @@
     }
 
     .hero {
-      min-height: 64vh;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      padding: 80px 24px;
+      padding: 30px 24px 18px;
     }
 
     .hero-inner {
@@ -91,6 +90,77 @@
       line-height: 1.65;
       color: #414141;
       text-align: center;
+    }
+
+    .drone-stage {
+      height: clamp(520px, 62vw, 900px);
+      background: var(--white);
+      position: relative;
+    }
+
+    .section-divider {
+      height: 2px;
+      background: var(--black);
+      width: 100%;
+      margin: 30px 0;
+    }
+
+    .drone-stage-inner {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      position: relative;
+    }
+
+    .drone-image {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: clamp(67px, 10.64vw, 157px);
+      height: auto;
+      display: block;
+      z-index: 2;
+    }
+
+    .device-image {
+      position: absolute;
+      left: 5%;
+      bottom: -30px;
+      height: min(68.2%, 616px);
+      width: auto;
+      display: block;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .tower-image {
+      position: absolute;
+      right: 13%;
+      bottom: 5%;
+      height: min(65.6%, 608px);
+      width: auto;
+      display: block;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .car-image {
+      position: absolute;
+      right: 1%;
+      bottom: 0;
+      width: clamp(150px, 24vw, 360px);
+      height: auto;
+      display: block;
+      z-index: 3;
+    }
+
+    .intro-section {
+      padding: 0 24px 72px;
+      background: var(--white);
+    }
+
+    .intro-section .intro {
+      margin-top: 0;
     }
 
     .comparison-list {
@@ -245,8 +315,43 @@
       }
 
       .hero {
-        min-height: 58vh;
-        padding: 64px 20px;
+        padding: 24px 20px 14px;
+      }
+
+      .drone-stage {
+        height: clamp(500px, 110vw, 760px);
+      }
+
+      .drone-stage-inner {
+        width: 100%;
+      }
+
+      .drone-image {
+        top: 10%;
+        left: 10%;
+        width: min(21.84vw, 118px);
+      }
+
+      .device-image {
+        left: 2%;
+        bottom: -30px;
+        height: 52.8%;
+      }
+
+      .tower-image {
+        right: 10%;
+        bottom: 5%;
+        height: 57.6%;
+      }
+
+      .car-image {
+        right: 1%;
+        bottom: 0;
+        width: min(42vw, 230px);
+      }
+
+      .intro-section {
+        padding: 0 20px 56px;
       }
 
       .features-inner {
@@ -271,7 +376,7 @@
 <body>
 
   <header class="header">
-    <img class="brand-image" src="sensitivetools_logo.png" alt="Sensitive Tools logo" />
+    <img class="brand-image" src="images/sensitivetools_logo.png" alt="Sensitive Tools logo" />
   </header>
 
   <div class="black-bar"></div>
@@ -285,13 +390,27 @@
           discover nearby wireless devices, understand where signals are coming from, and make
           better decisions in environments where awareness matters.
         </p>
-
-        <ul class="comparison-list">
-          <li>Professional RF equipment can be bulky, expensive and difficult to use.</li>
-          <li>Many compact detectors are limited to specific protocols, device types or known signals.</li>
-          <li>Sensitive Tools combines broad signal awareness, direction finding and true handheld portability in one practical device.</li>
-        </ul>
       </div>
+    </section>
+
+    <section class="drone-stage">
+      <div class="drone-stage-inner">
+        <img class="drone-image" src="images/drone.png" alt="Wireless drone device" />
+        <img class="device-image" src="images/device.png" alt="Sensitive Tools handheld signal finder" />
+        <img class="tower-image" src="images/tower.png" alt="Wireless telecom tower" />
+        <img class="car-image" src="images/car.png" alt="Wireless vehicle device" />
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="intro-section">
+
+      <ul class="comparison-list">
+        <li>Professional RF equipment can be bulky, expensive and difficult to use.</li>
+        <li>Many compact detectors are limited to specific protocols, device types or known signals.</li>
+        <li>Sensitive Tools combines broad signal awareness, direction finding and true handheld portability in one practical device.</li>
+      </ul>
     </section>
 
     <section class="features">
