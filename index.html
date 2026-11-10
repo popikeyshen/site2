@@ -348,6 +348,8 @@
     .prototype-capabilities strong{color:#111;display:block;margin-bottom:2px}
     .prototype-button{flex:0 0 auto;border:0;border-radius:999px;background:var(--black);color:var(--white);font:inherit;font-size:15px;font-weight:700;padding:14px 22px;cursor:pointer}
     .prototype-button:disabled{opacity:.55;cursor:default}
+    .prototype-action{flex:0 0 auto;display:flex;align-items:center;gap:16px}
+    .prototype-device-photo{display:block;width:218px;height:218px;object-fit:contain;object-position:center;filter:drop-shadow(0 10px 16px rgba(0,0,0,.10))}
     .prototype-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.42)}
     .prototype-modal.is-open{display:flex}.prototype-dialog{width:min(600px,100%);max-height:calc(100vh - 48px);overflow-y:auto;background:#fff;border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.22);padding:28px;position:relative}
     .prototype-dialog h2{margin:0 42px 8px 0;font-size:28px;letter-spacing:-.03em}.prototype-dialog-intro{margin:0 0 22px;color:#666;line-height:1.55;font-size:15px}
@@ -433,6 +435,8 @@
       .prototype-cta{margin:-10px auto 56px;padding:0 20px}
       .prototype-cta-inner{padding:24px;flex-direction:column;align-items:flex-start}
       .prototype-button{width:100%}
+      .prototype-action{width:100%;display:grid;grid-template-columns:180px 1fr;align-items:center}
+      .prototype-device-photo{width:180px;height:180px}
       .prototype-options,.prototype-check-grid,.prototype-capabilities{grid-template-columns:1fr}
       .prototype-dialog{padding:24px 20px;border-radius:16px}
     }
@@ -521,14 +525,17 @@
     <section class="prototype-cta" aria-labelledby="prototype-cta-title">
       <div class="prototype-cta-inner">
         <div class="prototype-cta-copy">
-          <h2 id="prototype-cta-title">Interested in testing a prototype?</h2>
-          <p>Tell us who you are and how you would use Sensitive Tools. We are looking for early testers, pilot users and partners.</p>
+          <h2 id="prototype-cta-title">Want to get a prototype?</h2>
+          <p>We are placing a small number of Sensitive Tools devices with early users. Tell us how you would use one — you may receive a prototype at no cost in exchange for practical feedback.</p>
           <div class="prototype-capabilities">
             <div><strong>ISM Finder</strong>2.4 / 5.8 GHz, Wi-Fi / Bluetooth, direction finding</div>
             <div><strong>Professional / Custom</strong>Wider or custom bands, alerts, unknown RF activity</div>
           </div>
         </div>
-        <button class="prototype-button" type="button" id="openPrototypeModal">Request a prototype</button>
+        <div class="prototype-action">
+          <img class="prototype-device-photo" src="images/proto.png" alt="Sensitive Tools handheld prototype" />
+          <button class="prototype-button" type="button" id="openPrototypeModal">Get a prototype</button>
+        </div>
       </div>
     </section>
 
@@ -538,8 +545,8 @@
   <div class="prototype-modal" id="prototypeModal" aria-hidden="true">
     <div class="prototype-dialog" role="dialog" aria-modal="true" aria-labelledby="prototypeDialogTitle">
       <button class="prototype-close" type="button" id="closePrototypeModal" aria-label="Close">×</button>
-      <h2 id="prototypeDialogTitle">Request a prototype</h2>
-      <p class="prototype-dialog-intro">A few details help us understand where the prototype could be useful.</p>
+      <h2 id="prototypeDialogTitle">Get a prototype</h2>
+      <p class="prototype-dialog-intro">Tell us briefly who you are and what you would use the device for.</p>
 
       <form class="prototype-form" id="prototypeForm">
         <div class="prototype-field">
@@ -598,7 +605,7 @@
         </div>
 
         <div class="prototype-status" id="prototypeStatus" role="status" aria-live="polite"></div>
-        <button class="prototype-button prototype-submit" id="prototypeSubmit" type="submit">Send request</button>
+        <button class="prototype-button prototype-submit" id="prototypeSubmit" type="submit">Request a prototype</button>
         <p class="prototype-form-note">Your request is sent directly to Sensitive Tools.</p>
       </form>
     </div>
@@ -699,7 +706,7 @@
       showStatus(error.message||"Unable to send the request. Please try again.","error");
     }finally{
       submitButton.disabled=false;
-      submitButton.textContent="Send request";
+      submitButton.textContent="Request a prototype";
     }
   });
 })();
