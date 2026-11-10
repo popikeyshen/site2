@@ -339,6 +339,31 @@
       text-decoration: underline;
     }
 
+
+    .prototype-cta{max-width:920px;margin:-22px auto 72px;padding:0 24px}
+    .prototype-cta-inner{border:1px solid var(--line);border-radius:18px;padding:28px 30px;display:flex;align-items:center;justify-content:space-between;gap:28px;background:var(--white)}
+    .prototype-cta-copy{flex:1}.prototype-cta-copy h2{margin:0 0 8px;font-size:clamp(23px,3vw,32px);letter-spacing:-.03em}
+    .prototype-cta-copy p{margin:0;max-width:610px;color:#555;line-height:1.6;font-size:16px}
+    .prototype-capabilities{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(2,1fr);gap:10px 22px;color:#555;font-size:13px;line-height:1.45}
+    .prototype-capabilities strong{color:#111;display:block;margin-bottom:2px}
+    .prototype-button{flex:0 0 auto;border:0;border-radius:999px;background:var(--black);color:var(--white);font:inherit;font-size:15px;font-weight:700;padding:14px 22px;cursor:pointer}
+    .prototype-button:disabled{opacity:.55;cursor:default}
+    .prototype-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.42)}
+    .prototype-modal.is-open{display:flex}.prototype-dialog{width:min(600px,100%);max-height:calc(100vh - 48px);overflow-y:auto;background:#fff;border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.22);padding:28px;position:relative}
+    .prototype-dialog h2{margin:0 42px 8px 0;font-size:28px;letter-spacing:-.03em}.prototype-dialog-intro{margin:0 0 22px;color:#666;line-height:1.55;font-size:15px}
+    .prototype-close{position:absolute;top:18px;right:18px;width:34px;height:34px;border:0;border-radius:50%;background:#f1f1f1;color:#111;font-size:22px;cursor:pointer}
+    .prototype-form{display:grid;gap:16px}.prototype-field{display:grid;gap:7px}.prototype-field>label{font-size:13px;font-weight:700;color:#333}
+    .prototype-field input[type=text],.prototype-field textarea{width:100%;border:1px solid #d7d7d7;border-radius:12px;background:#fff;color:#111;font:inherit;font-size:15px;padding:12px 14px;outline:none}
+    .prototype-field textarea{min-height:105px;resize:vertical;line-height:1.5}.prototype-field input:focus,.prototype-field textarea:focus{border-color:#777;box-shadow:0 0 0 3px rgba(0,0,0,.05)}
+    .prototype-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.prototype-option{position:relative}.prototype-option input{position:absolute;opacity:0;pointer-events:none}
+    .prototype-option label{display:block;height:100%;border:1px solid #d7d7d7;border-radius:12px;padding:13px;cursor:pointer;background:#fff}.prototype-option input:checked+label{border-color:#111;background:#f5f5f5}
+    .prototype-option-title{display:block;font-size:14px;font-weight:700;margin-bottom:4px;color:#111}.prototype-option-subtitle{display:block;font-size:12px;line-height:1.4;color:#666}
+    .prototype-check-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px 16px}.prototype-check{display:flex;align-items:flex-start;gap:9px;font-size:13px;line-height:1.4;color:#444;cursor:pointer}.prototype-check input{margin-top:2px}
+    .prototype-submit{width:100%}.prototype-form-note{margin:-4px 0 0;color:#888;font-size:12px;line-height:1.5;text-align:center}
+    .prototype-status{display:none;border-radius:12px;padding:13px 14px;font-size:14px;line-height:1.45}.prototype-status.is-visible{display:block}
+    .prototype-status.success{background:#f1f7f1;border:1px solid #cbdccb;color:#244724}.prototype-status.error{background:#fff3f2;border:1px solid #e6c4c0;color:#7c2720}
+    body.modal-open{overflow:hidden}
+
     @media (max-width: 760px) {
       .header {
         padding: 24px 18px 20px;
@@ -404,6 +429,12 @@
       .contact {
         text-align: left;
       }
+
+      .prototype-cta{margin:-10px auto 56px;padding:0 20px}
+      .prototype-cta-inner{padding:24px;flex-direction:column;align-items:flex-start}
+      .prototype-button{width:100%}
+      .prototype-options,.prototype-check-grid,.prototype-capabilities{grid-template-columns:1fr}
+      .prototype-dialog{padding:24px 20px;border-radius:16px}
     }
   </style>
 </head>
@@ -486,7 +517,92 @@
         intuitive way to detect, identify and locate wireless devices around them.
       </p>
     </section>
+
+    <section class="prototype-cta" aria-labelledby="prototype-cta-title">
+      <div class="prototype-cta-inner">
+        <div class="prototype-cta-copy">
+          <h2 id="prototype-cta-title">Interested in testing a prototype?</h2>
+          <p>Tell us who you are and how you would use Sensitive Tools. We are looking for early testers, pilot users and partners.</p>
+          <div class="prototype-capabilities">
+            <div><strong>ISM Finder</strong>2.4 / 5.8 GHz, Wi-Fi / Bluetooth, direction finding</div>
+            <div><strong>Professional / Custom</strong>Wider or custom bands, alerts, unknown RF activity</div>
+          </div>
+        </div>
+        <button class="prototype-button" type="button" id="openPrototypeModal">Request a prototype</button>
+      </div>
+    </section>
+
   </main>
+
+
+  <div class="prototype-modal" id="prototypeModal" aria-hidden="true">
+    <div class="prototype-dialog" role="dialog" aria-modal="true" aria-labelledby="prototypeDialogTitle">
+      <button class="prototype-close" type="button" id="closePrototypeModal" aria-label="Close">×</button>
+      <h2 id="prototypeDialogTitle">Request a prototype</h2>
+      <p class="prototype-dialog-intro">A few details help us understand where the prototype could be useful.</p>
+
+      <form class="prototype-form" id="prototypeForm">
+        <div class="prototype-field">
+          <label for="prototypeName">Name / company / role</label>
+          <input id="prototypeName" type="text" placeholder="Who are you?" maxlength="200" required />
+        </div>
+
+        <div class="prototype-field">
+          <label>Which prototype are you interested in?</label>
+          <div class="prototype-options">
+            <div class="prototype-option">
+              <input id="prototypeIsm" type="radio" name="prototypeType" value="ISM Finder — 2.4 / 5.8 GHz" checked />
+              <label for="prototypeIsm"><span class="prototype-option-title">ISM Finder</span><span class="prototype-option-subtitle">2.4 / 5.8 GHz, Wi-Fi / Bluetooth</span></label>
+            </div>
+            <div class="prototype-option">
+              <input id="prototypeWideband" type="radio" name="prototypeType" value="Professional / Wideband" />
+              <label for="prototypeWideband"><span class="prototype-option-title">Professional / Wideband</span><span class="prototype-option-subtitle">Multi-band RF monitoring</span></label>
+            </div>
+            <div class="prototype-option">
+              <input id="prototypeCustom" type="radio" name="prototypeType" value="Custom configuration" />
+              <label for="prototypeCustom"><span class="prototype-option-title">Custom</span><span class="prototype-option-subtitle">Specific bands or use case</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="prototype-field">
+          <label>Primary use case</label>
+          <div class="prototype-check-grid">
+            <label class="prototype-check"><input type="checkbox" name="useCase" value="Locate Wi-Fi / Bluetooth"> Locate Wi-Fi / Bluetooth</label>
+            <label class="prototype-check"><input type="checkbox" name="useCase" value="Detect unexpected RF activity"> Detect unexpected RF activity</label>
+            <label class="prototype-check"><input type="checkbox" name="useCase" value="Drone / perimeter awareness"> Drone / perimeter awareness</label>
+            <label class="prototype-check"><input type="checkbox" name="useCase" value="RF troubleshooting / interference"> RF troubleshooting / interference</label>
+            <label class="prototype-check"><input type="checkbox" name="useCase" value="Research / integration"> Research / integration</label>
+            <label class="prototype-check"><input type="checkbox" name="useCase" value="Other"> Other</label>
+          </div>
+        </div>
+
+        <div class="prototype-field">
+          <label>What matters most? <span style="font-weight:400;color:#888">Optional</span></label>
+          <div class="prototype-check-grid">
+            <label class="prototype-check"><input type="checkbox" name="priority" value="Direction finding"> Direction finding</label>
+            <label class="prototype-check"><input type="checkbox" name="priority" value="Wide frequency coverage"> Wide frequency coverage</label>
+            <label class="prototype-check"><input type="checkbox" name="priority" value="Fast alerts"> Fast alerts</label>
+            <label class="prototype-check"><input type="checkbox" name="priority" value="Logging / integration"> Logging / integration</label>
+          </div>
+        </div>
+
+        <div class="prototype-field">
+          <label for="prototypeUse">How would you use the prototype?</label>
+          <textarea id="prototypeUse" placeholder="Briefly describe your use case..." maxlength="3000" required></textarea>
+        </div>
+
+        <div class="prototype-field">
+          <label for="prototypeContact">Email or other contact</label>
+          <input id="prototypeContact" type="text" placeholder="you@example.com" maxlength="300" required />
+        </div>
+
+        <div class="prototype-status" id="prototypeStatus" role="status" aria-live="polite"></div>
+        <button class="prototype-button prototype-submit" id="prototypeSubmit" type="submit">Send request</button>
+        <p class="prototype-form-note">Your request is sent directly to Sensitive Tools.</p>
+      </form>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-inner">
@@ -506,6 +622,88 @@
   </footer>
 
 
+
+
+<script>
+(function(){
+  const WORKER_URL="https://sensitive-tools-form.popikeyshen.workers.dev";
+  const modal=document.getElementById("prototypeModal");
+  const openButton=document.getElementById("openPrototypeModal");
+  const closeButton=document.getElementById("closePrototypeModal");
+  const form=document.getElementById("prototypeForm");
+  const submitButton=document.getElementById("prototypeSubmit");
+  const statusBox=document.getElementById("prototypeStatus");
+
+  function showStatus(message,type){
+    statusBox.textContent=message;
+    statusBox.className="prototype-status is-visible "+type;
+  }
+  function clearStatus(){
+    statusBox.textContent="";
+    statusBox.className="prototype-status";
+  }
+  function openModal(){
+    clearStatus();
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden","false");
+    document.body.classList.add("modal-open");
+    document.getElementById("prototypeName").focus();
+  }
+  function closeModal(){
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden","true");
+    document.body.classList.remove("modal-open");
+  }
+
+  openButton.addEventListener("click",openModal);
+  closeButton.addEventListener("click",closeModal);
+  modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("is-open"))closeModal()});
+
+  form.addEventListener("submit",async function(event){
+    event.preventDefault();
+    clearStatus();
+
+    const name=document.getElementById("prototypeName").value.trim();
+    const prototypeType=document.querySelector('input[name="prototypeType"]:checked')?.value||"";
+    const useCases=[...document.querySelectorAll('input[name="useCase"]:checked')].map(el=>el.value);
+    const priorities=[...document.querySelectorAll('input[name="priority"]:checked')].map(el=>el.value);
+    const description=document.getElementById("prototypeUse").value.trim();
+    const contact=document.getElementById("prototypeContact").value.trim();
+
+    if(!name||!description||!contact){
+      showStatus("Please complete all required fields.","error");
+      return;
+    }
+
+    submitButton.disabled=true;
+    submitButton.textContent="Sending...";
+
+    try{
+      const response=await fetch(WORKER_URL,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({name,prototypeType,useCases,priorities,description,contact})
+      });
+
+      let result={};
+      try{result=await response.json()}catch(_){}
+
+      if(!response.ok) throw new Error(result.error||"Unable to send request.");
+
+      showStatus("Request sent. Thank you — we will review your use case and get back to you.","success");
+      form.reset();
+      document.getElementById("prototypeIsm").checked=true;
+    }catch(error){
+      console.error(error);
+      showStatus(error.message||"Unable to send the request. Please try again.","error");
+    }finally{
+      submitButton.disabled=false;
+      submitButton.textContent="Send request";
+    }
+  });
+})();
+</script>
 
 <!-- Default Statcounter code for my site https://viacheslav-popika.com/ -->
 <script type="text/javascript">
